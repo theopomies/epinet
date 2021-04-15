@@ -14,6 +14,7 @@
 #include <ip_address.h>
 #include <packet.h>
 #include <socket.h>
+#include <timeout.h>
 
 #define TCP_SOCKET(socket) (socket_get_tcp_socket(socket))
 
@@ -37,7 +38,7 @@ ip_address_t tcp_socket_get_remote_address(const tcp_socket_t *socket);
 unsigned short tcp_socket_get_remote_port(const tcp_socket_t *socket);
 
 socket_status_t tcp_socket_connect(tcp_socket_t *socket,
-    ip_address_t remoteAddress, unsigned short remotePort, int timeout);
+    ip_address_t remoteAddress, unsigned short remotePort, time_t timeout);
 void tcp_socket_disconnect(tcp_socket_t *socket);
 
 socket_status_t tcp_socket_send(

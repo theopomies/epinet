@@ -11,6 +11,8 @@
 #include <netinet/ip.h>
 #include <stdint.h>
 
+#include <timeout.h>
+
 typedef struct
 {
     char str_address[INET_ADDRSTRLEN];
@@ -24,6 +26,6 @@ ip_address_t ip_address_from_integer(uint32_t address);
 void ip_address_to_string(ip_address_t address, char *string);
 uint32_t ip_address_to_integer(ip_address_t address);
 ip_address_t ip_address_get_local_address(void);
-ip_address_t ip_address_get_public_address(int timeout);
+ip_address_t ip_address_get_public_address(time_t timeout);
 
 #endif /* !IP_ADDRESS_H_ */

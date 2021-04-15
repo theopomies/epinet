@@ -12,6 +12,7 @@
 #include <stddef.h>
 
 #include <ip_address.h>
+#include <timeout.h>
 
 typedef struct
 {
@@ -139,7 +140,7 @@ ftp_t *ftp_create(void);
 void ftp_destroy(ftp_t *ftp);
 
 ftp_response_t *ftp_connect(
-    ftp_t *ftp, ip_address_t server, unsigned short port, int timeout);
+    ftp_t *ftp, ip_address_t server, unsigned short port, time_t timeout);
 ftp_response_t *ftp_login_anonymous(ftp_t *ftp);
 ftp_response_t *ftp_login(ftp_t *ftp, const char *name, const char *password);
 ftp_response_t *ftp_disconnect(ftp_t *ftp);

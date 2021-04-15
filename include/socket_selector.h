@@ -12,6 +12,7 @@
 
 #include <tcp_listener.h>
 #include <tcp_socket.h>
+#include <timeout.h>
 #include <udp_socket.h>
 
 typedef struct
@@ -30,7 +31,7 @@ void socket_selector_remove_socket(
     socket_selector_t *selector, socket_t *socket);
 
 void socket_selector_clear(socket_selector_t *selector);
-bool socket_selector_wait(socket_selector_t *selector, int timeout);
+bool socket_selector_wait(socket_selector_t *selector, time_t timeout);
 
 bool socket_selector_is_socket_ready(
     const socket_selector_t *selector, socket_t *socket);

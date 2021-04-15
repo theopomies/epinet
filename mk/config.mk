@@ -7,8 +7,8 @@
 
 CC			=	gcc
 CPPFLAGS	=	-Iinclude
-CFLAGS		=	-fPIC -Wall -Wextra -O2
-LDFLAGS		=	-shared
+CFLAGS		=	-Wall -Wextra -O2
+LDFLAGS		=
 RM			=	rm -f
-TARGET_LIB 	=	epinet.so
+TARGET_LIB 	=	epinet.a
 OBJS		=	$(SRCS:.c=.o)
