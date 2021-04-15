@@ -21,7 +21,7 @@ bool tcp_listener_is_blocking(const tcp_listener_t *listener);
 
 unsigned short tcp_listener_get_local_port(const tcp_listener_t *listener);
 
-socket_status_t tcp_listener_accept(
+socket_status_t tcp_listener_listen(
     tcp_listener_t *listener, unsigned short port, ip_address_t address);
 
 socket_status_t tcp_listener_accept(
