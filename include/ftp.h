@@ -13,12 +13,24 @@
 
 #include <ip_address.h>
 
+typedef struct
+{
+} ftp_t;
+
+typedef struct
+{
+} ftp_listing_response_t;
+
+typedef struct
+{
+} ftp_directory_response_t;
+
 typedef enum
 {
     FTP_BINARY,
     FTP_ASCII,
     FTP_EBCDIC
-} ftp_traner_mode;
+} ftp_traner_mode_t;
 
 typedef enum
 {
