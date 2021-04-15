@@ -36,69 +36,69 @@ typedef enum
 {
     // 1xx: the requested action is being initiated,
     // expect another reply before proceeding with a new command
-    ftp_RestartMarkerReply = 110,
-    ftp_SERVICE_READY_SOON = 120,
-    ftp_DATA_CONNECTION_ALREADY_OPENED = 125,
-    ftp_OPENING_DATA_CONNECTON = 150,
+    FTP_RESTART_MARKER_REPLY = 110,
+    FTP_SERVICE_READY_SOON = 120,
+    FTP_DATA_CONNECTION_ALREADY_OPENED = 125,
+    FTP_OPENING_DATA_CONNECTON = 150,
 
     // 2xx: the requested action has been succesully completed
-    ftp_OK = 200,
-    ftp_POINTLESS_COMMAND = 202,
-    ftp_SYSTEM_STATUS = 211,
-    ftp_DIRECTORY_STATUS = 212,
-    ftp_FILE_STATUS = 213,
-    ftp_HELP_MESSAGE = 214,
-    ftp_SYSTEM_TYPE = 215,
-    ftp_SERVICE_READY = 220,
-    ftp_CLOSING_CONNECTION = 221,
-    ftp_DATA_CONNECTION_OPENED = 225,
-    ftp_CLOSING_DATA_CONNECTION = 226,
-    ftp_ENTERING_PASSIVE_MODE = 227,
-    ftp_LOGGED_IN = 230,
-    ftp_FILE_ACTION_OK = 250,
-    ftp_DIRECTORY_OK = 257,
+    FTP_OK = 200,
+    FTP_POINTLESS_COMMAND = 202,
+    FTP_SYSTEM_STATUS = 211,
+    FTP_DIRECTORY_STATUS = 212,
+    FTP_FILE_STATUS = 213,
+    FTP_HELP_MESSAGE = 214,
+    FTP_SYSTEM_TYPE = 215,
+    FTP_SERVICE_READY = 220,
+    FTP_CLOSING_CONNECTION = 221,
+    FTP_DATA_CONNECTION_OPENED = 225,
+    FTP_CLOSING_DATA_CONNECTION = 226,
+    FTP_ENTERING_PASSIVE_MODE = 227,
+    FTP_LOGGED_IN = 230,
+    FTP_FILE_ACTION_OK = 250,
+    FTP_DIRECTORY_OK = 257,
 
     // 3xx: the command has been accepted, but the requested action
     // is dormant, pending receipt of further information
-    ftp_NEED_PASSWORD = 331,
-    ftp_NEED_ACCOUNT_TO_LOG_IN = 332,
-    ftp_NEED_INFORMATION = 350,
+    FTP_NEED_PASSWORD = 331,
+    FTP_NEED_ACCOUNT_TO_LOG_IN = 332,
+    FTP_NEED_INFORMATION = 350,
 
     // 4xx: the command was not accepted and the requested action did not take
     // place, but the error condition is temporary and the action may be
     // requested again
-    ftp_SERVICE_UNAVAILABLE = 421,
-    ftp_DATA_CONNECTION_UNAVAILABLE = 425,
-    ftp_TRANER_ABORTED = 426,
-    ftp_FILE_ACTION_ABORTED = 450,
-    ftp_LOCAL_ERROR = 451,
-    ftp_INSUFFICIENT_STORAGE_SPACE = 452,
+    FTP_SERVICE_UNAVAILABLE = 421,
+    FTP_DATA_CONNECTION_UNAVAILABLE = 425,
+    FTP_TRANER_ABORTED = 426,
+    FTP_FILE_ACTION_ABORTED = 450,
+    FTP_LOCAL_ERROR = 451,
+    FTP_INSUFFICIENT_STORAGE_SPACE = 452,
 
     // 5xx: the command was not accepted and
     // the requested action did not take place
-    ftp_COMMAND_UNKNOWN = 500,
-    ftp_PARAMETERS_UNKNOWN = 501,
-    ftp_COMMAND_NOT_IMPLEMENTED = 502,
-    ftp_BAD_COMMAND_SEQUENCE = 503,
-    ftp_PARAMETER_NOT_IMPLEMENTED = 504,
-    ftp_NOT_LOGGED_IN = 530,
-    ftp_NEED_ACCOUNT_TO_STORE = 532,
-    ftp_FILE_UNAVAILABE = 550,
-    ftp_PAGE_TYPE_UNKNOWN = 551,
-    ftp_NOT_ENOUGH_MEMORY = 552,
-    ftp_FILENAME_NOT_ALLOWED = 553,
+    FTP_COMMAND_UNKNOWN = 500,
+    FTP_PARAMETERS_UNKNOWN = 501,
+    FTP_COMMAND_NOT_IMPLEMENTED = 502,
+    FTP_BAD_COMMAND_SEQUENCE = 503,
+    FTP_PARAMETER_NOT_IMPLEMENTED = 504,
+    FTP_NOT_LOGGED_IN = 530,
+    FTP_NEED_ACCOUNT_TO_STORE = 532,
+    FTP_FILE_UNAVAILABE = 550,
+    FTP_PAGE_TYPE_UNKNOWN = 551,
+    FTP_NOT_ENOUGH_MEMORY = 552,
+    FTP_FILENAME_NOT_ALLOWED = 553,
 
     // 6xx: replies regarding confidentiality and integrity
-    ftp_INTEGRITY_PROTECTED = 631,
-    ftp_CONFIDENTIALITY_INTEGRITY_PROTECTED = 632,
-    ftp_CONFIDENTIALITY_PROTECTED = 633,
+    FTP_INTEGRITY_PROTECTED = 631,
+    FTP_CONFIDENTIALITY_INTEGRITY_PROTECTED = 632,
+    FTP_CONFIDENTIALITY_PROTECTED = 633,
 
     // 10xx: error codes
-    ftp_CONNECTION_RESET = 1001,
-    ftp_CANNOT_CONNECT,
-    ftp_CANNOT_CONNECT_REFUSED,
-    ftp_DIRECTORY_NOT_EMPTY,
-    ftp_SERVER_FULL
+    FTP_CONNECTION_RESET = 1001,
+    FTP_CANNOT_CONNECT,
+    FTP_CANNOT_CONNECT_REFUSED,
+    FTP_DIRECTORY_NOT_EMPTY,
+    FTP_SERVER_FULL
 } ftp_status_t;
 
 typedef struct
@@ -132,8 +132,8 @@ const char *ftp_directory_response_get_directory(
 
 void ftp_response_destroy(ftp_response_t *ftp_response);
 bool ftp_response_is_ok(const ftp_response_t *ftp_response);
-ftp_status_t ftp_response_getStatus(const ftp_response_t *ftp_response);
-const char *ftp_response_getMessage(const ftp_response_t *ftp_response);
+ftp_status_t ftp_response_get_status(const ftp_response_t *ftp_response);
+const char *ftp_response_get_message(const ftp_response_t *ftp_response);
 
 ftp_t *ftp_create(void);
 void ftp_destroy(ftp_t *ftp);
