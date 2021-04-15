@@ -10,7 +10,6 @@
 
 #include <ip_address.h>
 #include <tcp_socket.h>
-#include <timeout.h>
 
 typedef tcp_socket_t tcp_listener_t;
 
