@@ -15,6 +15,7 @@ jobs:
         run: |
           sudo sed -i 's/azure\.//' /etc/apt/sources.list
           sudo apt-get update
+          sudo apt install meson ninja-build
           git clone --recursive https://github.com/Snaipe/Criterion
           meson build
           ninja -C build
