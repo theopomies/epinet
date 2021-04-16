@@ -13,7 +13,7 @@
 //////////////////////////////////////////////////////////////
 /// \brief Epinet's perror equivalent (public)
 ///
-/// \param Message to display
+/// \param message Message to display
 //////////////////////////////////////////////////////////////
 void epinet_perror(const char *message);
 
@@ -25,7 +25,7 @@ char *get_error(void);
 //////////////////////////////////////////////////////////////
 /// \brief Setter for the error message (private)
 ///
-/// \param Error message to display (MAX_ERROR_LEN chars max)
+/// \param message Error message (MAX_ERROR_LEN chars max)
 //////////////////////////////////////////////////////////////
 void set_error(const char *message);
 

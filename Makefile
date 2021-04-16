@@ -14,13 +14,13 @@ $(TARGET_LIB):	$(OBJS)
 	@ar rc $(TARGET_LIB) $(OBJS)
 
 clean:
-	@rm -f $(wildcard *.o)
-	@rm -f *.gcno
-	@rm -f *.gcda
+	@$(RM) $(wildcard **/*.o)
+	@$(RM) *.gcno
+	@$(RM) *.gcda
 
 fclean:	clean
-	@rm -f $(TARGET_LIB)
-	@rm -f $(TARGET_TESTS)
+	@$(RM) $(TARGET_LIB)
+	@$(RM) $(TARGET_TESTS)
 
 re:	fclean all
 
