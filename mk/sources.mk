@@ -5,8 +5,60 @@
 ## Makefile
 ##
 
-SRCS	=	error/error.c	\
-			socket_selector/socket_selector.c	\
-			socket_selector/socket_selector_bis.c
+ERROR_DIR	=	error/
+ERROR_SRCS	=	get_error.c	\
+				set_error.c	\
+				epinet_perror.c
+
+SOCKET_SELECTOR_DIR		=	socket_selector/
+SOCKET_SELECTOR_SRCS	=	add_socket.c	\
+							clear.c	\
+							copy.c	\
+							create.c	\
+							destroy.c	\
+							ready.c	\
+							remove_socket.c	\
+							wait.c
+
+FTP_DIR		=	ftp/
+FTP_SRCS	=
+
+HTTP_DIR	=	http/
+HTTP_SRCS	=
+
+IP_ADDRESS_DIR	=	ip_address/
+IP_ADDRESS_SRCS	=
+
+PACKET_DIR	=	packet/
+PACKET_SRCS	=
+
+SOCKET_DIR	=	socket/
+SOCKET_SRCS	=	$(TCP_SRCS)	\
+				$(UDP_SRCS)	\
+
+TCP_DIR		=	tcp/
+TCP_SRCS	=	$(addprefix $(TCP_LISTENER_DIR), $(TCP_LISTENER_SRCS))	\
+				$(addprefix $(TCP_SOCKET_DIR), $(TCP_SOCKET_SRCS))
+
+TCP_LISTENER		=	tcp_listener/
+TCP_LISTENER_DIR	=	$(addprefix $(TCP_DIR), $(TCP_LISTENER))
+TCP_LISTENER_SRCS	=
+
+TCP_SOCKET		=	tcp_socket/
+TCP_SOCKET_DIR	=	$(addprefix $(TCP_DIR), $(TCP_SOCKET))
+TCP_SOCKET_SRCS	=
+
+UDP_DIR			=	udp/
+UDP_SOCKET		=	udp_socket/
+UDP_SOCKET_DIR	=	$(addprefix $(UDP_DIR), $(UDP_SOCKET))
+UDP_SOCKET_SRCS	=
+
+SRCS		=	$(addprefix $(ERROR_DIR), $(ERROR_SRCS))	\
+				$(addprefix $(SOCKET_SELECTOR_DIR), $(SOCKET_SELECTOR_SRCS))	\
+				$(addprefix $(FTP_DIR), $(FTP_SRCS))	\
+				$(addprefix $(HTTP_DIR), $(HTTP_SRCS))	\
+				$(addprefix $(IP_ADDRESS_DIR), $(IP_ADDRESS_SRCS))	\
+				$(addprefix $(PACKET_DIR), $(PACKET_SRCS))	\
+				$(addprefix $(SOCKET_DIR), $(SOCKET_SRCS))
 
 TESTS_SRCS	=	test_error.c
