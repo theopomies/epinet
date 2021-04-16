@@ -13,16 +13,12 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Makefile Tests
-        run: |
-          make
-          make clean
-          make re
-          make fclean
       - name: Lib Compilation
         run: make
       - name: Cleaning repository
+        run: make clean
+      - name: Recompile rule
+        run: make re
+      - name: Full Clean repository
         run: make fclean
-      - name: Testing repository
-        run: make tests_run
       
