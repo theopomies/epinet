@@ -25,8 +25,8 @@ fclean:	clean
 re:	fclean all
 
 tests_run:	re
-	@$(CC) -o $(TARGET_TESTS) $(addprefix $(DIR_TESTS), $(TESTS_SRC)) \
-	-lcriterion -lepinet -L. --coverage
+	@$(CC) -o $(TARGET_TESTS) $(addprefix $(DIR_TESTS), $(TESTS_SRCS)) \
+	$(TESTS_FLAGS) $(CPPFLAGS)
 	./unit_tests
 
 .PHONY:	all clean fclean re tests_run

@@ -6,3 +6,5 @@
 ##
 
 SRCS	=	error.c
+
+TESTS_SRCS	=	test_error.c
