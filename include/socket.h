@@ -13,6 +13,7 @@
 typedef int fd_t;
 
 #define SOCKET(socket) ((socket_t *)socket)
+#define NO_SOCKET -1
 
 typedef enum
 {
@@ -37,6 +38,7 @@ typedef struct
 } socket_t;
 
 socket_t *socket_create(socket_type_t type);
+socket_t *socket_create_empty(socket_type_t type);
 void socket_destroy();
 
 void socket_set_blocking(socket_t *sock, bool blocking);

@@ -28,6 +28,7 @@ typedef struct
 tcp_socket_t *socket_get_tcp_socket(socket_t *socket);
 
 tcp_socket_t *tcp_socket_create(void);
+tcp_socket_t *tcp_socket_create_empty(void);
 void tcp_socket_destroy(tcp_socket_t *socket);
 
 void tcp_socket_set_blocking(tcp_socket_t *socket, bool blocking);
