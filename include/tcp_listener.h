@@ -11,15 +11,23 @@
 #include <ip_address.h>
 #include <tcp_socket.h>
 
+///////////////////////////////////////////////////////////////////////////////
+/// A tcp_listener is a tcp_socket meant to listen and accept
+/// therefore, most tcp_socket functions can be used on it
+/// However you sould not use:
+/// send*
+/// receive*
+/// (dis)connect
+///////////////////////////////////////////////////////////////////////////////
+
+#define TCP_LISTENER(socket) (tcp_socket_get_listener(socket));
+
 typedef tcp_socket_t tcp_listener_t;
+
+tcp_listener_t *tcp_socket_get_listener(tcp_socket_t *socket);
 
 tcp_listener_t *tcp_listener_create(void);
 void tcp_listener_destroy(tcp_listener_t *listener);
-
-void tcp_listener_set_blocking(tcp_listener_t *listener, bool blocking);
-bool tcp_listener_is_blocking(const tcp_listener_t *listener);
-
-unsigned short tcp_listener_get_local_port(const tcp_listener_t *listener);
 
 socket_status_t tcp_listener_listen(
     tcp_listener_t *listener, unsigned short port, ip_address_t address);

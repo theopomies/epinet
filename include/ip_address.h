@@ -8,6 +8,7 @@
 #ifndef IP_ADDRESS_H_
 #define IP_ADDRESS_H_
 
+#include <socket.h>
 #include <timeout.h>
 
 #include <netinet/ip.h>
@@ -23,6 +24,7 @@ ip_address_t ip_address_from_string(const char *address);
 ip_address_t ip_address_from_bytes(
     uint8_t byte0, uint8_t byte1, uint8_t byte2, uint8_t byte3);
 ip_address_t ip_address_from_integer(uint32_t address);
+ip_address_t ip_address_from_socket(socket_t *socket);
 void ip_address_to_string(ip_address_t address, char *string);
 uint32_t ip_address_to_integer(ip_address_t address);
 ip_address_t ip_address_get_local_address(void);

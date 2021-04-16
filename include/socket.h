@@ -8,6 +8,8 @@
 #ifndef SOCKET_H_
 #define SOCKET_H_
 
+#include <netinet/ip.h>
+#include <stdbool.h>
 #include <sys/types.h>
 
 typedef int fd_t;
