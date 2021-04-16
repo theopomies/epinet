@@ -5,6 +5,8 @@
 ## Makefile
 ##
 
-SRCS	=	error.c
+SRCS	=	error/error.c	\
+			socket_selector/socket_selector.c	\
+			socket_selector/socket_selector_bis.c
 
 TESTS_SRCS	=	test_error.c

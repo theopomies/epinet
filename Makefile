@@ -14,7 +14,7 @@ $(TARGET_LIB):	$(OBJS)
 	@ar rc $(TARGET_LIB) $(OBJS)
 
 clean:
-	@$(RM) $(wildcard **/*.o)
+	@$(RM) $(OBJS)
 	@$(RM) *.gcno
 	@$(RM) *.gcda
 

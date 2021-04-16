@@ -51,6 +51,6 @@ socket_status_t tcp_socket_receive(
 
 socket_status_t tcp_socket_send_packet(tcp_socket_t *socket, packet_t *packet);
 socket_status_t tcp_socket_receive_packet(
-    tcp_socket_t *socket, packet_t *packet)
+    tcp_socket_t *socket, packet_t *packet);
 
 #endif /* !TCP_SOCKET_H_ */

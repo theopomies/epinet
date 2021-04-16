@@ -10,6 +10,6 @@
 
 #define NO_TIMEOUT -1
 
-typedef int timeout_t
+typedef int timeout_t;
 
 #endif /* !TIMEOUT_H_ */
