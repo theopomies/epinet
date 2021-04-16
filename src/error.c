@@ -5,11 +5,12 @@
 ** error
 */
 
-#include <error.h>
-
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include <strings.h>
+
+#include <error.h>
 
 char *get_error(void)
 {

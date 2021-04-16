@@ -25,7 +25,7 @@ char *get_error(void);
 //////////////////////////////////////////////////////////////
 /// \brief Setter for the error message (private)
 ///
-/// \param message Error message (MAX_ERROR_LEN chars max)
+/// \param message Error message (MAX_ERROR_LEN-1 chars max)
 //////////////////////////////////////////////////////////////
 void set_error(const char *message);
 
