@@ -17,6 +17,8 @@ jobs:
           sudo apt-get update
           sudo apt install meson ninja-build
           git clone --recursive https://github.com/Snaipe/Criterion
+          ls
+          cd Criterion
           meson build
           ninja -C build
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
