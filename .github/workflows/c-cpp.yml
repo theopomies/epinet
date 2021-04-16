@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Install Criterion
         run: |
+          sudo sed -i 's/azure\.//' /etc/apt/sources.list
+          sudo apt-get update
           sudo add-apt-repository ppa:snaipewastaken/ppa
           sudo apt-get update
           sudo apt-get install criterion-dev
