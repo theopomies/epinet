@@ -15,12 +15,14 @@ jobs:
         run: |
           sudo sed -i 's/azure\.//' /etc/apt/sources.list
           sudo apt-get update
-          sudo apt install meson ninja-build
-          git clone --recursive https://github.com/Snaipe/Criterion
-          ls
-          cd Criterion
-          meson build
-          ninja -C build
+          sudo apt-get install
+          sudo add-apt-repository ppa:snaipewastaken/ppa
+          sudo apt-get update
+          apt-get install
+          sudo apt-get install criterion-dev
+          sudo apt-get update
+          apt-get install
+
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
