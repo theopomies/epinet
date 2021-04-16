@@ -21,10 +21,11 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - name: Lib Compilation
-      - run: make
-      - name: Cleaning repository
-      - run: make fclean
-      - name: Testing repository
-      - run: make tests_run
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Lib Compilation
+        run: make
+      - name: Cleaning repository
+        run: make fclean
+      - name: Testing repository
+        run: make tests_run
+      
