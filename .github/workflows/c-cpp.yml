@@ -10,13 +10,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker:latest
     steps:
-      - name: Updating System
-        run: |
-          sudo sed -i 's/azure\.//' /etc/apt/sources.list
-          sudo apt-get update
-          sudo apt-get install
-
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Lib Compilation
@@ -28,6 +23,4 @@ jobs:
       - name: Full Clean repository
         run: make fclean
       - name: Running tests on Lib
-        run: |
-          ./dependencies/install_criterion.sh
-          make tests_run
+        run: make tests_run
