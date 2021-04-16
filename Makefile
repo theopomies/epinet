@@ -10,15 +10,14 @@ include mk/config.mk
 
 all:	${TARGET_LIB}
 
-$(TARGET_LIB):	$(OBJ)
-	ar rc $(TARGET_LIB) $(OBJ)
+$(TARGET_LIB):	$(OBJS)
+	ar rc $(TARGET_LIB) $(OBJS)
 
 clean:
 	rm -f $(wildcard *.o)
 
 fclean:	clean
 	rm -f $(TARGET_LIB)
-	rm -f ../$(TARGET_LIB)
 
 re:	fclean all
 .PHONY:	all clean fclean re

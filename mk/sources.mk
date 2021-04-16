@@ -5,4 +5,4 @@
 ## Makefile
 ##
 
-SRCS = 
+SRCS	=	error.c
