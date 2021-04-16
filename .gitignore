@@ -3,3 +3,5 @@
 *.a
 *.out
 main.c
+*.gcno
+*.gcda
