@@ -11,13 +11,22 @@ include mk/config.mk
 all:	${TARGET_LIB}
 
 $(TARGET_LIB):	$(OBJS)
-	ar rc $(TARGET_LIB) $(OBJS)
+	@ar rc $(TARGET_LIB) $(OBJS)
 
 clean:
-	rm -f $(wildcard *.o)
+	@rm -f $(wildcard *.o)
+	@rm -f *.gcno
+	@rm -f *.gcda
 
 fclean:	clean
-	rm -f $(TARGET_LIB)
+	@rm -f $(TARGET_LIB)
+	@rm -f $(TARGET_TESTS)
 
 re:	fclean all
-.PHONY:	all clean fclean re
+
+tests_run:	re
+	@$(CC) -o $(TARGET_TESTS) $(addprefix $(DIR_TESTS), $(TESTS_SRC)) \
+	-lcriterion -lepinet -L. --coverage
+	./unit_tests
+
+.PHONY:	all clean fclean re tests_run
