@@ -2,15 +2,20 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ CI ]
   pull_request:
-    branches: [ master ]
+    branches: [ CI ]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
     steps:
+      - name: Install Criterion
+        run: |
+          sudo add-apt-repository ppa:snaipewastaken/ppa
+          sudo apt-get update
+          sudo apt-get install criterion-dev
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
