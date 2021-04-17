@@ -15,7 +15,7 @@ void set_error(const char *message)
     char *error = get_error();
 
     if (!message) {
-        bzero(error, MAX_ERROR_LEN);
+        memset(error, 0, MAX_ERROR_LEN);
         return;
     }
     strncpy(error, message, MAX_ERROR_LEN);

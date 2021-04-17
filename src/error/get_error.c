@@ -16,7 +16,7 @@ char *get_error(void)
     static bool init = false;
 
     if (!init) {
-        bzero(error, MAX_ERROR_LEN);
+        memset(error, 0, MAX_ERROR_LEN);
         init = true;
     }
     return error;
