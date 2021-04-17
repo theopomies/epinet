@@ -27,7 +27,14 @@ HTTP_DIR	=	http/
 HTTP_SRCS	=
 
 IP_ADDRESS_DIR	=	ip_address/
-IP_ADDRESS_SRCS	=
+IP_ADDRESS_SRCS	=	from_bytes.c	\
+					from_integer.c	\
+					from_socket.c	\
+					from_string.c	\
+					get_local_address.c	\
+					get_public_address.c	\
+					to_integer.c	\
+					to_string.c
 
 PACKET_DIR	=	packet/
 PACKET_SRCS	=

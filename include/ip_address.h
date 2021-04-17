@@ -14,10 +14,15 @@
 #include <netinet/ip.h>
 #include <stdint.h>
 
+#define ADDRESS_NONE (htonl(-1))
+#define IP_ADDRESS_ANY (ip_address_from_string("0.0.0.0"))
+#define IP_ADDRESS_BROADCAST (ip_address_from_string("255.255.255.255"))
+#define IP_ADDRESS_LOCALHOST (ip_address_from_string("127.0.0.1"))
+
 typedef struct
 {
-    char str_address[INET_ADDRSTRLEN];
     uint32_t address;
+    char str_address[INET_ADDRSTRLEN];
 } ip_address_t;
 
 ip_address_t ip_address_from_string(const char *address);
