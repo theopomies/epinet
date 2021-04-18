@@ -57,7 +57,10 @@ TCP_SRCS	=	$(addprefix $(TCP_LISTENER_DIR), $(TCP_LISTENER_SRCS))	\
 
 TCP_LISTENER		=	tcp_listener/
 TCP_LISTENER_DIR	=	$(addprefix $(TCP_DIR), $(TCP_LISTENER))
-TCP_LISTENER_SRCS	=
+TCP_LISTENER_SRCS	=	accept.c	\
+						create.c	\
+						listen.c	\
+						destroy.c
 
 TCP_SOCKET		=	tcp_socket/
 TCP_SOCKET_DIR	=	$(addprefix $(TCP_DIR), $(TCP_SOCKET))
