@@ -42,6 +42,13 @@ PACKET_SRCS	=
 SOCKET_DIR	=	socket/
 SOCKET_SRCS	=	$(TCP_SRCS)	\
 				$(UDP_SRCS)	\
+				create_empty.c	\
+				create.c	\
+				destroy.c	\
+				get_tcp_socket.c	\
+				get_udp_socket.c	\
+				is_blocking.c	\
+				set_blocking.c
 
 TCP_DIR		=	tcp/
 TCP_SRCS	=	$(addprefix $(TCP_LISTENER_DIR), $(TCP_LISTENER_SRCS))	\

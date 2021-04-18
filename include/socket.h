@@ -41,7 +41,7 @@ typedef struct
 
 socket_t *socket_create(socket_type_t type);
 socket_t *socket_create_empty(socket_type_t type);
-void socket_destroy();
+void socket_destroy(socket_t *sock);
 
 void socket_set_blocking(socket_t *sock, bool blocking);
 bool socket_is_blocking(socket_t *sock);
