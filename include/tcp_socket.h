@@ -39,7 +39,7 @@ ip_address_t tcp_socket_get_remote_address(const tcp_socket_t *socket);
 unsigned short tcp_socket_get_remote_port(const tcp_socket_t *socket);
 
 socket_status_t tcp_socket_connect(tcp_socket_t *socket,
-    ip_address_t remoteAddress, unsigned short remotePort, timeout_t timeout);
+    ip_address_t remote_address, unsigned short remote_port);
 void tcp_socket_disconnect(tcp_socket_t *socket);
 
 socket_status_t tcp_socket_send(

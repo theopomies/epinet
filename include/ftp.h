@@ -14,6 +14,7 @@
 #include <ip_address.h>
 #include <timeout.h>
 
+/*
 typedef struct
 {
 } ftp_t;
@@ -32,6 +33,7 @@ typedef enum
     FTP_ASCII,
     FTP_EBCDIC
 } ftp_traner_mode_t;
+*/
 
 typedef enum
 {
@@ -95,13 +97,13 @@ typedef enum
     FTP_CONFIDENTIALITY_PROTECTED = 633,
 
     // 10xx: error codes
-    FTP_CONNECTION_RESET = 1001,
-    FTP_CANNOT_CONNECT,
-    FTP_CANNOT_CONNECT_REFUSED,
-    FTP_DIRECTORY_NOT_EMPTY,
-    FTP_SERVER_FULL
+	FTP_INVALID_RESPONSE = 1000,
+	FTP_CONNECTION_FAILED = 1001,
+	FTP_CONNECTION_CLOSED = 1002,
+	FTP_INVALID_FILE = 1003
 } ftp_status_t;
 
+/*
 typedef struct
 {
     ftp_status_t status;
@@ -161,5 +163,6 @@ ftp_response_t *ftp_upload(ftp_t *ftp, const char *local_file,
     const char *remotePath, ftp_traner_mode_t mode);
 ftp_response_t *ftp_send_command(
     ftp_t *ftp, const char *command, const char *parameter);
+    */
 
 #endif /* !ftp_H_ */

@@ -48,7 +48,8 @@ SOCKET_SRCS	=	$(TCP_SRCS)	\
 				get_tcp_socket.c	\
 				get_udp_socket.c	\
 				is_blocking.c	\
-				set_blocking.c
+				set_blocking.c	\
+				get_status.c
 
 TCP_DIR		=	tcp/
 TCP_SRCS	=	$(addprefix $(TCP_LISTENER_DIR), $(TCP_LISTENER_SRCS))	\
@@ -60,7 +61,22 @@ TCP_LISTENER_SRCS	=
 
 TCP_SOCKET		=	tcp_socket/
 TCP_SOCKET_DIR	=	$(addprefix $(TCP_DIR), $(TCP_SOCKET))
-TCP_SOCKET_SRCS	=
+TCP_SOCKET_SRCS	=	connect.c	\
+					create_empty.c	\
+					create.c	\
+					destroy.c	\
+					disconnect.c	\
+					get_listener.c	\
+					get_local_port.c	\
+					get_remote_address.c	\
+					get_remote_port.c	\
+					is_blocking.c	\
+					receive_packet.c	\
+					receive.c	\
+					send_packet.c	\
+					send_partial.c	\
+					send.c	\
+					set_blocking.c
 
 UDP_DIR			=	udp/
 UDP_SOCKET		=	udp_socket/
