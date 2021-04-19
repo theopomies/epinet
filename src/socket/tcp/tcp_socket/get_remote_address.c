@@ -29,5 +29,5 @@ ip_address_t tcp_socket_get_remote_address(const tcp_socket_t *socket)
         set_error(strerror(errno));
         return ip;
     }
-    return ip_address_from_integer(address.sin_addr.s_addr);
+    return ip_address_from_integer(ntohl(address.sin_addr.s_addr));
 }
