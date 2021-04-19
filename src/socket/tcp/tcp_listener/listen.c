@@ -29,9 +29,9 @@ socket_status_t tcp_listener_listen(
     address_in.sin_addr.s_addr = address.address;
     address_in.sin_family = AF_INET;
     address_in.sin_port = htons(port);
-    if (!bind(listener->socket, (struct sockaddr *)&address_in,
+    if (bind(listener->socket, (struct sockaddr *)&address_in,
             sizeof(address_in)) ||
-        !listen(listener->socket, SOMAXCONN)) {
+        listen(listener->socket, SOMAXCONN)) {
         set_error(strerror(errno));
         return SOCKET_ERROR;
     }
