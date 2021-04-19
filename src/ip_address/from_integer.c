@@ -25,6 +25,6 @@ ip_address_t ip_address_from_integer(uint32_t address)
         ip.address = ADDRESS_NONE;
         return ip;
     }
-    ip.address = address_in.sin_addr.s_addr;
+    ip.address = address;
     return ip;
 }

@@ -27,5 +27,5 @@ ip_address_t ip_address_from_socket(socket_t *socket)
         set_error(strerror(errno));
         return ip;
     }
-    return ip_address_from_integer(addr_in.sin_addr.s_addr);
+    return ip_address_from_integer(ntohl(addr_in.sin_addr.s_addr));
 }

@@ -19,7 +19,7 @@
 #define IP_ADDRESS_BROADCAST (ip_address_from_string("255.255.255.255"))
 #define IP_ADDRESS_LOCALHOST (ip_address_from_string("127.0.0.1"))
 
-#define IS_VALID_IP(ip) (*ip->str_address != '\0')
+#define IS_VALID_IP(ip) (*ip.str_address != '\0')
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \brief Structure containing both the integer for the address and the string

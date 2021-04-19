@@ -71,6 +71,7 @@ TCP_SOCKET_SRCS	=	connect.c	\
 					disconnect.c	\
 					get_listener.c	\
 					get_local_port.c	\
+					get_local_address.c	\
 					get_remote_address.c	\
 					get_remote_port.c	\
 					is_blocking.c	\

@@ -31,6 +31,6 @@ ip_address_t ip_address_from_string(const char *address)
         return ip;
     }
     strncpy(ip.str_address, address, INET_ADDRSTRLEN);
-    ip.address = address_in.sin_addr.s_addr;
+    ip.address = ntohl(address_in.sin_addr.s_addr);
     return ip;
 }

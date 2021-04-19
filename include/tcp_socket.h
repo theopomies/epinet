@@ -89,6 +89,15 @@ unsigned short tcp_socket_get_local_port(const tcp_socket_t *socket);
 ip_address_t tcp_socket_get_remote_address(const tcp_socket_t *socket);
 
 ////////////////////////////////////////////////////////////////////////////////
+/// \brief Gets the local address of a socket
+///
+/// \param socket Socket to check
+///
+/// \return The ip address. To check with IS_VALID_IP
+////////////////////////////////////////////////////////////////////////////////
+ip_address_t tcp_socket_get_local_address(const tcp_socket_t *socket);
+
+////////////////////////////////////////////////////////////////////////////////
 /// \brief Gets the remote port of a socket
 ///
 /// \param socket Socket to check
