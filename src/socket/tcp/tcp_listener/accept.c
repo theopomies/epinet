@@ -26,6 +26,8 @@ socket_status_t tcp_listener_accept(
     }
     if (!*connected)
         *connected = tcp_socket_create_empty();
+    if (!*connected)
+        return SOCKET_ERROR;
     if ((sock = accept(listener->socket, (struct sockaddr *)&address, &len)) ==
         -1) {
         set_error(strerror(errno));
