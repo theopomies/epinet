@@ -31,7 +31,7 @@ socket_status_t tcp_socket_receive(
     if (rec > 0) {
         if (received)
             *received = rec;
-        return rec == size ? SOCKET_DONE : SOCKET_PARTIAL;
+        return rec == size ? SOCKET_PARTIAL : SOCKET_DONE;
     }
     if (rec == 0)
         return SOCKET_DISCONNECTED;
