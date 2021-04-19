@@ -150,7 +150,7 @@ socket_status_t tcp_socket_send_partial(
 /// \param socket Socket to receive from
 /// \param data Pointer to store data
 /// \param size Size of the data to receive
-/// \param sent Pointer to a value-return to place the size of data received.
+/// \param receive Pointer to a value-return to place the size of data received.
 /// can be NULL to discard result.
 ////////////////////////////////////////////////////////////////////////////////
 socket_status_t tcp_socket_receive(
