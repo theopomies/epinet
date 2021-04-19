@@ -9,7 +9,7 @@
 #define EPINET_H_
 
 #include <error.h>
-//#include <ftp.h>
+#include <ftp.h>
 //#include <http.h>
 #include <ip_address.h>
 //#include <packet.h>
