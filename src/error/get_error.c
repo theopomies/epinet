@@ -6,6 +6,7 @@
 */
 
 #include <stdbool.h>
+#include <string.h>
 #include <strings.h>
 
 #include <error.h>

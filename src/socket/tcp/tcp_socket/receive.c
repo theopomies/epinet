@@ -17,7 +17,7 @@ socket_status_t tcp_socket_receive(
 {
     int rec = 0;
 
-    if (!socket || socket < 0) {
+    if (!socket || socket->socket < 0) {
         set_error("tcp_socket_send_partial: socket cannot be NULL or < 0.");
         return SOCKET_ERROR;
     }
