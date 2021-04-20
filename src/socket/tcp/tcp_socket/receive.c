@@ -15,7 +15,7 @@
 socket_status_t tcp_socket_receive(
     tcp_socket_t *socket, void *data, size_t size, size_t *received)
 {
-    size_t rec = 0;
+    int rec = 0;
 
     if (!socket || socket < 0) {
         set_error("tcp_socket_send_partial: socket cannot be NULL or < 0.");
@@ -31,7 +31,7 @@ socket_status_t tcp_socket_receive(
     if (rec > 0) {
         if (received)
             *received = rec;
-        return rec == size ? SOCKET_PARTIAL : SOCKET_DONE;
+        return (size_t)rec == size ? SOCKET_PARTIAL : SOCKET_DONE;
     }
     if (rec == 0)
         return SOCKET_DISCONNECTED;
