@@ -33,7 +33,7 @@ selector_status_t socket_selector_wait(
     writefds = watch & WATCH_WRT ? &selector->ready : NULL;
     exceptfds = watch & WATCH_EXC ? &selector->ready : NULL;
     if ((status = select(selector->max_socket + 1, readfds, writefds, exceptfds,
-             timeval_ptr)) == SELECTOR_ERROR)
+            timeval_ptr)) == SELECTOR_ERROR)
         set_error(strerror(errno));
     return status;
 }

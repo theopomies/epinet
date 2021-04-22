@@ -54,6 +54,6 @@ void packet_write_uint32(packet_t *packet, uint32_t);
 void packet_write_float(packet_t *packet, float);
 void packet_write_double(packet_t *packet, double);
 void packet_write_string(packet_t *packet, const char *string);
-void packet_write_wideString(packet_t *packet, const wchar_t *string);
+void packet_write_wide_string(packet_t *packet, const wchar_t *string);
 
 #endif /* !PACKET_H_ */
