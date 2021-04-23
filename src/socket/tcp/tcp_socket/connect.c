@@ -24,7 +24,7 @@ socket_status_t tcp_socket_connect(tcp_socket_t *socket,
         return SOCKET_ERROR;
     }
     address.sin_port = htons(remote_port);
-    address.sin_addr.s_addr = remote_address.address;
+    address.sin_addr.s_addr = htonl(remote_address.address);
     address.sin_family = AF_INET;
     if (connect(socket->socket, (struct sockaddr *)&address, sizeof(address)) ==
         -1) {
