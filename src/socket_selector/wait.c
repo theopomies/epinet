@@ -25,7 +25,7 @@ static selector_status_t call_select(
     exceptfds = watch & WATCH_EXC ? &selector->ready : NULL;
 handle_select_signal:
     if ((status = select(selector->max_socket + 1, readfds, writefds, exceptfds,
-             timeval_ptr)) == SELECTOR_ERROR) {
+            timeval_ptr)) == SELECTOR_ERROR) {
         if (errno == EINTR)
             goto handle_select_signal;
         set_error(strerror(errno));
