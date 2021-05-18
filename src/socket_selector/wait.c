@@ -23,13 +23,12 @@ static selector_status_t call_select(
     readfds = watch & WATCH_RD ? &selector->ready : NULL;
     writefds = watch & WATCH_WRT ? &selector->ready : NULL;
     exceptfds = watch & WATCH_EXC ? &selector->ready : NULL;
-handle_select_signal:
-    if ((status = select(selector->max_socket + 1, readfds, writefds, exceptfds,
-            timeval_ptr)) == SELECTOR_ERROR) {
-        if (errno == EINTR)
-            goto handle_select_signal;
-        set_error(strerror(errno));
+    while ((status = select(selector->max_socket + 1, readfds, writefds,
+                exceptfds, timeval_ptr)) == SELECTOR_ERROR &&
+           errno == EINTR) {
     }
+    if (status == SELECTOR_ERROR)
+        set_error(strerror(errno));
     return status;
 }
 
