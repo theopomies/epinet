@@ -7,7 +7,7 @@
 
 CC				=	gcc
 CPPFLAGS		=	-Iinclude
-CFLAGS			=	-Wall -Wextra -O2
+CFLAGS			=	-Wall -Wextra -O2 -g
 LDFLAGS			=
 RM				=	rm -f
 TARGET_LIB 		=	libepinet.a

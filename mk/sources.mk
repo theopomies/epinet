@@ -43,7 +43,23 @@ PACKET_SRCS	=	append.c	\
 				clone.c		\
 				create.c	\
 				destroy.c	\
+				end_of_packet.c	\
+				get_data_size.c	\
+				get_data.c	\
+				read_int8.c	\
+				read_int16.c	\
+				read_int32.c	\
+				read_uint8.c	\
+				read_uint16.c	\
+				read_uint32.c	\
+				read.c	\
 				resize.c	\
+				write_int8.c	\
+				write_int16.c	\
+				write_int32.c	\
+				write_uint8.c	\
+				write_uint16.c	\
+				write_uint32.c	\
 
 SOCKET_DIR	=	socket/
 SOCKET_SRCS	=	$(TCP_SRCS)	\

@@ -41,3 +41,135 @@ Test(packet_can_read, success)
     cr_assert(!packet_can_read(p, 2));
     packet_destroy(p);
 }
+
+Test(packet_can_read, int8)
+{
+    packet_t *p = packet_create();
+    int8_t data = 12;
+
+    cr_assert(packet_read_int8(p, &data) != PACKET_DONE);
+    cr_assert(packet_write_int8(p, data) == PACKET_DONE);
+    data = 24;
+    cr_assert(packet_write_int8(p, data) == PACKET_DONE);
+    cr_assert(packet_write_int8(p, data) == PACKET_DONE);
+    cr_assert(packet_read_int8(p, &data) == PACKET_DONE);
+    cr_assert(data == 12);
+    cr_assert(packet_read_int8(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_int8(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_int8(p, &data) != PACKET_DONE);
+    data = -120;
+    cr_assert(packet_write_int8(p, data) == PACKET_DONE);
+    cr_assert(packet_read_int8(p, &data) == PACKET_DONE);
+    cr_assert(data == -120);
+    packet_destroy(p);
+}
+
+Test(packet_can_read, uint8)
+{
+    packet_t *p = packet_create();
+    uint8_t data = 12;
+
+    cr_assert(packet_read_uint8(p, &data) != PACKET_DONE);
+    cr_assert(packet_write_int8(p, data) == PACKET_DONE);
+    data = 24;
+    cr_assert(packet_write_uint8(p, data) == PACKET_DONE);
+    cr_assert(packet_write_uint8(p, data) == PACKET_DONE);
+    cr_assert(packet_read_uint8(p, &data) == PACKET_DONE);
+    cr_assert(data == 12);
+    cr_assert(packet_read_uint8(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_uint8(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_uint8(p, &data) != PACKET_DONE);
+    packet_destroy(p);
+}
+
+Test(packet_can_read, int16)
+{
+    packet_t *p = packet_create();
+    int16_t data = 12;
+
+    cr_assert(packet_read_int16(p, &data) != PACKET_DONE);
+    cr_assert(packet_write_int16(p, data) == PACKET_DONE);
+    data = 24;
+    cr_assert(packet_write_int16(p, data) == PACKET_DONE);
+    cr_assert(packet_write_int16(p, data) == PACKET_DONE);
+    cr_assert(packet_read_int16(p, &data) == PACKET_DONE);
+    cr_assert(data == 12);
+    cr_assert(packet_read_int16(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_int16(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_int16(p, &data) != PACKET_DONE);
+    data = -120;
+    cr_assert(packet_write_int16(p, data) == PACKET_DONE);
+    cr_assert(packet_read_int16(p, &data) == PACKET_DONE);
+    cr_assert(data == -120);
+    packet_destroy(p);
+}
+
+Test(packet_can_read, uint16)
+{
+    packet_t *p = packet_create();
+    uint16_t data = 12;
+
+    cr_assert(packet_read_uint16(p, &data) != PACKET_DONE);
+    cr_assert(packet_write_uint16(p, data) == PACKET_DONE);
+    data = 24;
+    cr_assert(packet_write_uint16(p, data) == PACKET_DONE);
+    cr_assert(packet_write_uint16(p, data) == PACKET_DONE);
+    cr_assert(packet_read_uint16(p, &data) == PACKET_DONE);
+    cr_assert(data == 12);
+    cr_assert(packet_read_uint16(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_uint16(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_uint16(p, &data) != PACKET_DONE);
+    packet_destroy(p);
+}
+
+Test(packet_can_read, int32)
+{
+    int32_t data = 12;
+    packet_t *p = packet_create();
+
+    cr_assert(packet_read_int32(p, &data) != PACKET_DONE);
+    cr_assert(packet_write_int32(p, data) == PACKET_DONE);
+    data = 24;
+    cr_assert(packet_write_int32(p, data) == PACKET_DONE);
+    cr_assert(packet_write_int32(p, data) == PACKET_DONE);
+    cr_assert(packet_read_int32(p, &data) == PACKET_DONE);
+    cr_assert(data == 12);
+    cr_assert(packet_read_int32(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_int32(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_int32(p, &data) != PACKET_DONE);
+    data = -120;
+    cr_assert(packet_write_int32(p, data) == PACKET_DONE);
+    cr_assert(packet_read_int32(p, &data) == PACKET_DONE);
+    cr_assert(data == -120);
+    packet_destroy(p);
+}
+
+Test(packet_can_read, uint32)
+{
+    packet_t *p = packet_create();
+    uint32_t data = 12;
+
+    cr_assert(packet_read_uint32(p, &data) != PACKET_DONE);
+    cr_assert(packet_write_uint32(p, data) == PACKET_DONE);
+    data = 24;
+    cr_assert(packet_write_uint32(p, data) == PACKET_DONE);
+    cr_assert(packet_write_uint32(p, data) == PACKET_DONE);
+    cr_assert(packet_read_uint32(p, &data) == PACKET_DONE);
+    cr_assert(data == 12);
+    cr_assert(packet_read_uint32(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_uint32(p, &data) == PACKET_DONE);
+    cr_assert(data == 24);
+    cr_assert(packet_read_uint32(p, &data) != PACKET_DONE);
+    packet_destroy(p);
+}
