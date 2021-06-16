@@ -12,6 +12,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
+typedef enum
+{
+    PACKET_ERROR = -1,
+    PACKET_DONE,
+    PACKET_PARTIAL,
+    PACKET_CORRUPTED,
+} packet_status_t;
+
 typedef struct
 {
     char *data;
@@ -22,11 +30,15 @@ typedef struct
 } packet_t;
 
 packet_t *packet_create(void);
-
 packet_t *packet_copy(const packet_t *packet);
+
 void packet_destroy(packet_t *packet);
-void packet_append(packet_t *packet, const void *data, size_t sizeInBytes);
-void packet_clear(packet_t *packet);
+
+packet_status_t packet_resize(packet_t *packet, size_t size);
+
+packet_status_t packet_append(packet_t *packet, const void *data, size_t size);
+packet_status_t packet_clear(packet_t *packet);
+
 const void *packet_get_data(const packet_t *packet);
 size_t packet_get_data_size(const packet_t *packet);
 bool packet_end_of_packet(const packet_t *packet);
