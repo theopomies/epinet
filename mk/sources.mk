@@ -38,6 +38,7 @@ IP_ADDRESS_SRCS	=	from_bytes.c	\
 
 PACKET_DIR	=	packet/
 PACKET_SRCS	=	append.c	\
+				can_read.c	\
 				clear.c		\
 				clone.c		\
 				create.c	\
