@@ -18,7 +18,7 @@ packet_status_t packet_resize(packet_t *packet, size_t size)
         set_error("packet_resize: packet can not be null.");
         return PACKET_ERROR;
     }
-    packet->data = realloc(packet->data, size);
+    packet->data = realloc(packet->data, size + 1);
     if (!packet->data) {
         set_error(strerror(errno));
         packet->is_valid = false;
