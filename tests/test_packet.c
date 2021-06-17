@@ -42,7 +42,7 @@ Test(packet_can_read, success)
     packet_destroy(p);
 }
 
-Test(packet_can_read, int8)
+Test(packet_read, int8)
 {
     packet_t *p = packet_create();
     int8_t data = 12;
@@ -66,7 +66,7 @@ Test(packet_can_read, int8)
     packet_destroy(p);
 }
 
-Test(packet_can_read, uint8)
+Test(packet_read, uint8)
 {
     packet_t *p = packet_create();
     uint8_t data = 12;
@@ -86,7 +86,7 @@ Test(packet_can_read, uint8)
     packet_destroy(p);
 }
 
-Test(packet_can_read, int16)
+Test(packet_read, int16)
 {
     packet_t *p = packet_create();
     int16_t data = 12;
@@ -110,7 +110,7 @@ Test(packet_can_read, int16)
     packet_destroy(p);
 }
 
-Test(packet_can_read, uint16)
+Test(packet_read, uint16)
 {
     packet_t *p = packet_create();
     uint16_t data = 12;
@@ -130,7 +130,7 @@ Test(packet_can_read, uint16)
     packet_destroy(p);
 }
 
-Test(packet_can_read, int32)
+Test(packet_read, int32)
 {
     int32_t data = 12;
     packet_t *p = packet_create();
@@ -154,7 +154,7 @@ Test(packet_can_read, int32)
     packet_destroy(p);
 }
 
-Test(packet_can_read, uint32)
+Test(packet_read, uint32)
 {
     packet_t *p = packet_create();
     uint32_t data = 12;
@@ -171,5 +171,54 @@ Test(packet_can_read, uint32)
     cr_assert(packet_read_uint32(p, &data) == PACKET_DONE);
     cr_assert(data == 24);
     cr_assert(packet_read_uint32(p, &data) != PACKET_DONE);
+    packet_destroy(p);
+}
+
+Test(packet_read, string)
+{
+    packet_t *p = packet_create();
+    char *data = "Hello";
+
+    cr_assert(packet_read_string(p, &data) != PACKET_DONE);
+    cr_assert(packet_write_string(p, data) == PACKET_DONE);
+    data = "World";
+    cr_assert(packet_write_string(p, data) == PACKET_DONE);
+    data = "!!!";
+    cr_assert(packet_write_string(p, data) == PACKET_DONE);
+    cr_assert(packet_read_string(p, &data) == PACKET_DONE);
+    cr_assert_str_eq(data, "Hello");
+    free(data);
+    cr_assert(packet_read_string(p, &data) == PACKET_DONE);
+    cr_assert_str_eq(data, "World");
+    free(data);
+    cr_assert(packet_read_string(p, &data) == PACKET_DONE);
+    cr_assert_str_eq(data, "!!!");
+    free(data);
+    cr_assert(packet_read_string(p, &data) != PACKET_DONE);
+    packet_destroy(p);
+}
+
+Test(packet_read, multiple_types)
+{
+    packet_t *p = packet_create();
+    char *str = NULL;
+    uint8_t ubyte = 42;
+    int16_t word = -201;
+    uint32_t udword = 843526;
+
+    cr_assert(packet_read_string(p, &str) != PACKET_DONE);
+    cr_assert(packet_write_string(p, "Hello") == PACKET_DONE);
+    cr_assert(packet_write_uint8(p, 42) == PACKET_DONE);
+    cr_assert(packet_read_string(p, &str) == PACKET_DONE);
+    cr_assert_str_eq(str, "Hello");
+    cr_assert(packet_write_int16(p, -201) == PACKET_DONE);
+    cr_assert(packet_write_uint32(p, 51384) == PACKET_DONE);
+    cr_assert(packet_read_uint8(p, &ubyte) == PACKET_DONE);
+    cr_assert(packet_write_uint8(p, 21) == PACKET_DONE);
+    cr_assert(packet_read_int16(p, &word) == PACKET_DONE);
+    cr_assert(packet_read_uint32(p, &udword) == PACKET_DONE);
+    cr_assert(ubyte == 42 && word == -201 && udword == 51384);
+    cr_assert(packet_read_uint8(p, &ubyte) == PACKET_DONE);
+    cr_assert(ubyte == 21 && packet_read_string(p, &str) != PACKET_DONE);
     packet_destroy(p);
 }
