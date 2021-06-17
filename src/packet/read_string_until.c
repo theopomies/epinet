@@ -42,6 +42,8 @@ void packet_read_string_cut_on_delimiter(
     begin = packet->data + packet->read_pos;
     end = begin + strcspn(begin, delim);
     *size_to_read = (end - begin) + strspn(end, delim);
+    if (begin[*size_to_read] == '\0')
+        *size_to_read += 1;
     end[0] = '\0';
 }
 

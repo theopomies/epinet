@@ -206,13 +206,13 @@ Test(packet_read, string_until)
     cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
     cr_assert(packet_write_string(p, "Hello\nWorld\t\n\n!!!\t") == PACKET_DONE);
     cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
-    cr_assert_str_eq(data, "Hello");
+    cr_assert(!memcmp(data, "Hello", 6));
     free(data);
     cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
-    cr_assert_str_eq(data, "World");
+    cr_assert(!memcmp(data, "World\0\n\n", 9));
     free(data);
     cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
-    cr_assert_str_eq(data, "!!!");
+    cr_assert(!memcmp(data, "!!!", 3));
     free(data);
     cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
     packet_destroy(p);
@@ -226,10 +226,10 @@ Test(packet_read, string_until_front_delim)
     cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
     cr_assert(packet_write_string(p, "\t\nHello\n!!!") == PACKET_DONE);
     cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
-    cr_assert_str_eq(data, "Hello");
+    cr_assert(!memcmp(data, "Hello", 6));
     free(data);
     cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
-    cr_assert_str_eq(data, "!!!");
+    cr_assert(!memcmp(data, "!!!", 3));
     free(data);
     cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
     packet_destroy(p);
@@ -243,10 +243,10 @@ Test(packet_read, string_until_back_delim)
     cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
     cr_assert(packet_write_string(p, "Hello\n\n!!!\t\t\n") == PACKET_DONE);
     cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
-    cr_assert_str_eq(data, "Hello");
+    cr_assert(!memcmp(data, "Hello\0\n", 8));
     free(data);
     cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
-    cr_assert_str_eq(data, "!!!");
+    cr_assert(!memcmp(data, "!!!\0\t\n", 7));
     free(data);
     cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
     packet_destroy(p);
@@ -260,16 +260,16 @@ Test(packet_read, string_until_front_back_delim)
     cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
     cr_assert(packet_write_string(p, "\n\tHello\n\n!!!\t\t\n") == PACKET_DONE);
     cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
-    cr_assert_str_eq(data, "Hello");
+    cr_assert(!memcmp(data, "Hello\0\n", 8));
     free(data);
     cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
-    cr_assert_str_eq(data, "!!!");
+    cr_assert(!memcmp(data, "!!!\0\t\n", 7));
     free(data);
     cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
     packet_destroy(p);
 }
 
-Test(packet_read, multiple_types)
+Test(packet_read, multiple_types_1)
 {
     packet_t *p = packet_create();
     char *str = NULL;
@@ -291,5 +291,31 @@ Test(packet_read, multiple_types)
     cr_assert(ubyte == 42 && word == -201 && udword == 51384);
     cr_assert(packet_read_uint8(p, &ubyte) == PACKET_DONE);
     cr_assert(ubyte == 21 && packet_read_string(p, &str) != PACKET_DONE);
+    packet_destroy(p);
+}
+
+Test(packet_read, multiple_types_2)
+{
+    packet_t *p = packet_create();
+    char *str = "\n\nWow\n\tSuch a nice string\n\t";
+    uint8_t ubyte = 0;
+    uint32_t udword = 0;
+
+    cr_assert(packet_write_string(p, str) == PACKET_DONE);
+    cr_assert(packet_write_uint8(p, 42) == PACKET_DONE);
+    cr_assert(packet_write_string(p, "!") == PACKET_DONE);
+    cr_assert(packet_read_string_until(p, &str, "\n\t") == PACKET_DONE);
+    cr_assert(!memcmp(str, "Wow\0\t", 6));
+    free(str);
+    cr_assert(packet_write_uint32(p, 51384) == PACKET_DONE);
+    cr_assert(packet_read_string_until(p, &str, "\n\t") == PACKET_DONE);
+    cr_assert(!memcmp(str, "Such a nice string\0\t", 21));
+    free(str);
+    cr_assert(packet_read_uint8(p, &ubyte) == PACKET_DONE);
+    cr_assert(packet_read_string(p, &str) == PACKET_DONE);
+    cr_assert(packet_read_uint32(p, &udword) == PACKET_DONE);
+    cr_assert_str_eq(str, "!");
+    free(str);
+    cr_assert(ubyte == 42 && udword == 51384);
     packet_destroy(p);
 }
