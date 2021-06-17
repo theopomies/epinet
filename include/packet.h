@@ -17,6 +17,7 @@ typedef enum
     PACKET_ERROR = -1,
     PACKET_DONE,
     PACKET_PARTIAL,
+    PACKET_END_OF_PACKET,
     PACKET_CORRUPTED,
 } packet_status_t;
 
@@ -55,7 +56,7 @@ packet_status_t packet_read_uint32(packet_t *packet, uint32_t *);
 //packet_status_t packet_read_double(packet_t *packet, double *);
 packet_status_t packet_read_string(packet_t *packet, char **);
 packet_status_t packet_read_string_until(
-    packet_t *packet, char **, const char *);
+    packet_t *packet, char **data, const char *delim);
 
 //packet_status_t packet_write_bool(packet_t *packet, bool);
 packet_status_t packet_write_int8(packet_t *packet, int8_t);

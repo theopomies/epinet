@@ -198,6 +198,77 @@ Test(packet_read, string)
     packet_destroy(p);
 }
 
+Test(packet_read, string_until)
+{
+    packet_t *p = packet_create();
+    char *data = "Hello";
+
+    cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
+    cr_assert(packet_write_string(p, "Hello\nWorld\t\n\n!!!\t") == PACKET_DONE);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
+    cr_assert_str_eq(data, "Hello");
+    free(data);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
+    cr_assert_str_eq(data, "World");
+    free(data);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
+    cr_assert_str_eq(data, "!!!");
+    free(data);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
+    packet_destroy(p);
+}
+
+Test(packet_read, string_until_front_delim)
+{
+    packet_t *p = packet_create();
+    char *data = "Hello";
+
+    cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
+    cr_assert(packet_write_string(p, "\t\nHello\n!!!") == PACKET_DONE);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
+    cr_assert_str_eq(data, "Hello");
+    free(data);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
+    cr_assert_str_eq(data, "!!!");
+    free(data);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
+    packet_destroy(p);
+}
+
+Test(packet_read, string_until_back_delim)
+{
+    packet_t *p = packet_create();
+    char *data = "Hello";
+
+    cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
+    cr_assert(packet_write_string(p, "Hello\n\n!!!\t\t\n") == PACKET_DONE);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
+    cr_assert_str_eq(data, "Hello");
+    free(data);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
+    cr_assert_str_eq(data, "!!!");
+    free(data);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
+    packet_destroy(p);
+}
+
+Test(packet_read, string_until_front_back_delim)
+{
+    packet_t *p = packet_create();
+    char *data = "Hello";
+
+    cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
+    cr_assert(packet_write_string(p, "\n\tHello\n\n!!!\t\t\n") == PACKET_DONE);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
+    cr_assert_str_eq(data, "Hello");
+    free(data);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") == PACKET_DONE);
+    cr_assert_str_eq(data, "!!!");
+    free(data);
+    cr_assert(packet_read_string_until(p, &data, "\n\t") != PACKET_DONE);
+    packet_destroy(p);
+}
+
 Test(packet_read, multiple_types)
 {
     packet_t *p = packet_create();

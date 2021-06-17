@@ -50,6 +50,7 @@ PACKET_SRCS	=	append.c	\
 				read_int16.c	\
 				read_int32.c	\
 				read_string.c	\
+				read_string_until.c	\
 				read_uint8.c	\
 				read_uint16.c	\
 				read_uint32.c	\
