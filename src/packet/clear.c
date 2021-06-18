@@ -19,6 +19,5 @@ packet_status_t packet_clear(packet_t *packet)
     packet->size = 0;
     packet->read_pos = 0;
     packet->read_pos = 0;
-    packet->is_valid = true;
     return PACKET_DONE;
 }

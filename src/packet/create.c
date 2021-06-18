@@ -18,6 +18,5 @@ packet_t *packet_create(void)
     packet->data = NULL;
     packet->size = 0;
     packet->read_pos = 0;
-    packet->is_valid = true;
     return packet;
 }

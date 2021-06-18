@@ -26,7 +26,6 @@ typedef struct
     char *data;
     size_t size;
     size_t read_pos;
-    bool is_valid;
 } packet_t;
 
 packet_t *packet_create(void);

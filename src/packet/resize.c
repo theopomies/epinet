@@ -21,7 +21,6 @@ packet_status_t packet_resize(packet_t *packet, size_t size)
     packet->data = realloc(packet->data, size + 1);
     if (!packet->data) {
         set_error(strerror(errno));
-        packet->is_valid = false;
         return PACKET_CORRUPTED;
     }
     packet->size = size;
