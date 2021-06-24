@@ -24,9 +24,9 @@ fclean:	clean
 
 re:	fclean all
 
-tests_run:	re
+tests_run:	re $(TEST_OBJS)
 	@$(CC) -o $(TARGET_TESTS) $(addprefix $(DIR_TESTS), $(TESTS_SRCS)) \
-	$(TESTS_FLAGS) $(CPPFLAGS)
+	$(TESTS_FLAGS) $(CPPFLAGS) $(CFLAGS)
 	./unit_tests
 
 .PHONY:	all clean fclean re tests_run

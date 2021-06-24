@@ -16,3 +16,4 @@ DIR_SRC			=	./src/
 DIR_TESTS		=	./tests/
 TESTS_FLAGS		=	-lcriterion -lepinet -L. --coverage
 OBJS			=	$(addprefix $(DIR_SRC), $(SRCS:.c=.o))
+TEST_OBJS		=	$(addprefix $(DIR_TESTS), $(TESTS_SRCS:.c=.o))

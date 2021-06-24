@@ -37,7 +37,32 @@ IP_ADDRESS_SRCS	=	from_bytes.c	\
 					to_string.c
 
 PACKET_DIR	=	packet/
-PACKET_SRCS	=
+PACKET_SRCS	=	append.c	\
+				can_read.c	\
+				clear.c		\
+				clone.c		\
+				create.c	\
+				destroy.c	\
+				end_of_packet.c	\
+				get_data_size.c	\
+				get_data.c	\
+				read_int8.c	\
+				read_int16.c	\
+				read_int32.c	\
+				read_string.c	\
+				read_string_until.c	\
+				read_uint8.c	\
+				read_uint16.c	\
+				read_uint32.c	\
+				read.c	\
+				resize.c	\
+				write_int8.c	\
+				write_int16.c	\
+				write_int32.c	\
+				write_string.c	\
+				write_uint8.c	\
+				write_uint16.c	\
+				write_uint32.c	\
 
 SOCKET_DIR	=	socket/
 SOCKET_SRCS	=	$(TCP_SRCS)	\
@@ -95,4 +120,5 @@ SRCS		=	$(addprefix $(ERROR_DIR), $(ERROR_SRCS))	\
 				$(addprefix $(PACKET_DIR), $(PACKET_SRCS))	\
 				$(addprefix $(SOCKET_DIR), $(SOCKET_SRCS))
 
-TESTS_SRCS	=	test_error.c
+TESTS_SRCS	=	test_error.c	\
+				test_packet.c
