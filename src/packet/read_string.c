@@ -14,16 +14,17 @@
 
 static packet_status_t packet_read_string_error(packet_t *packet, char **data)
 {
+    if (!data) {
+        set_error("packet_read_string: data can not be null.");
+        return PACKET_ERROR;
+    }
+    *data = NULL;
     if (!packet) {
         set_error("packet_read_string: packet can not be null.");
         return PACKET_ERROR;
     }
     if (!packet->data) {
         set_error("packet_read_string: packet can not be null.");
-        return PACKET_ERROR;
-    }
-    if (!data) {
-        set_error("packet_read_string: data can not be null.");
         return PACKET_ERROR;
     }
     return PACKET_DONE;
@@ -38,10 +39,12 @@ packet_status_t packet_read_string(packet_t *packet, char **data)
         return status;
     packet->data[packet->size] = '\0';
     size_to_read = strlen(packet->data + packet->read_pos) + 1;
-    *data = malloc(size_to_read);
+    *data = realloc(*data, size_to_read);
     if (!*data) {
         set_error(strerror(errno));
         return PACKET_ERROR;
     }
+    if (size_to_read)
+        (*data)[size_to_read - 1] = '\0';
     return packet_read(packet, *data, size_to_read);
 }

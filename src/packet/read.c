@@ -20,7 +20,7 @@ packet_status_t packet_read(packet_t *packet, void *data, size_t size)
         return PACKET_ERROR;
     }
     if (packet_can_read(packet, size) == false) {
-        set_error("packet_read: Not enought data to read.");
+        set_error("packet_read: Not enough data to read.");
         return PACKET_ERROR;
     }
     memcpy(data, packet->data + packet->read_pos, size);

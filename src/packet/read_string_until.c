@@ -61,10 +61,11 @@ packet_status_t packet_read_string_until(
     packet_read_string_cut_on_delimiter(packet, delim, &size_to_read);
     if (size_to_read == 0)
         return PACKET_END_OF_PACKET;
-    *data = calloc(1, size_to_read + 1);
+    *data = realloc(*data, size_to_read + 1);
     if (!*data) {
         set_error(strerror(errno));
         return PACKET_ERROR;
     }
+    (*data)[size_to_read] = '\0';
     return packet_read(packet, *data, size_to_read);
 }

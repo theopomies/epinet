@@ -166,7 +166,13 @@ socket_status_t tcp_socket_receive(
     tcp_socket_t *socket, void *data, size_t size, size_t *received);
 
 ////////////////////////////////////////////////////////////////////////////////
-/// TODO: NOT IMPLEMENTED
+/// \brief Attempts to send \a packet to \a socket. The data and it's size are
+/// stored in the packet
+///
+/// \param socket Socket to send to
+/// \param packet Packet to send
+/// \return SOCKET_DONE on complete send, SOCKET_PARTIAL on partial send,
+/// an informative status and epinet_perror set otherwise.
 ////////////////////////////////////////////////////////////////////////////////
 socket_status_t tcp_socket_send_packet(tcp_socket_t *socket, packet_t *packet);
 
