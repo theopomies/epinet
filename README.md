@@ -1,6 +1,6 @@
 # Epinet
 
-Epinet is a "network lib" developed by [KenKakura](https://github.com/KenKakura) and [Matska](https://github.com/matheo-lucak) to be Epitech-compliant.
+Epinet is a "network lib" developed by [theopomies](https://github.com/theopomies) and [Matska](https://github.com/matheo-lucak) to be Epitech-compliant.
 
 ## Installation
 
